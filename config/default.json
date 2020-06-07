@@ -1,0 +1,11 @@
+{
+  "database": {
+    "host": "localhost",
+    "user": "changethis",
+    "password": "changethis",
+    "database": "changethis"
+  },
+  "server": {
+    "port": 80
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "defaultEnv": "local",
+  "local": {
+    "host": "localhost",
+    "user": "changethis",
+    "password": "changethis",
+    "database": "changethis",
+    "driver": "mysql",
+    "multipleStatements": true
+  },
+  "prod": {
+    "host": "mariadb",
+    "user": "changethis",
+    "password": "changethis",
+    "database": "changethis",
+    "driver": "mysql",
+    "multipleStatements": true
+  }
+}

@@ -1,0 +1,5 @@
+client/
+.gitignore
+docker-compose.yaml
+Dockerfile
+README.md

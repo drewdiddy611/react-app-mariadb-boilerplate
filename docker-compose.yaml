@@ -1,0 +1,24 @@
+version: '3.1'
+
+services:
+  mariadb:
+    container_name: boilerplate-with-react-mysql-sql-database-compose
+    image: mariadb:10.5.3
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: changethis
+      MYSQL_PASSWORD: changethis
+      MYSQL_DATABASE: changethis
+
+  application:
+    container_name: boilerplate-with-react-mysql-application-compose
+    image: boilerplate-with-react-mysql
+    restart: always
+    entrypoint: sh -c '/usr/init/wait-for.sh mariadb:3306 -s -t 60 -- npm run db:init -- -e prod && node /usr/init/server.js'
+    ports:
+      - "80:80"
+    environment:
+      NODE_ENV: prod

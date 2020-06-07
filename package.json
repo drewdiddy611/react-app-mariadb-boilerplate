@@ -1,34 +1,38 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1"
-  },
+  "name": "boilerplate-with-react-mysql",
+  "version": "1.0.0",
+  "description": "express backend for boilerplate-with-react-mysql application",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "init": "npm i && cd client && npm i && cd ..",
+    "build": "cd client && npm run build && cd ../ && npm run copy",
+    "build:docker": "docker build --tag boilerplate-with-react-mysql .",
+    "build:full": "npm run build && npm run build:docker",
+    "start": "npm run build && npm run db:init && node server.js",
+    "start:docker": "docker-compose down && npm run build:full && docker-compose up --force-recreate",
+    "db:init": "db-migrate up",
+    "db:reset": "db-migrate down -c 100 && npm run db:init",
+    "db:create-migration": "db-migrate create",
+    "db:start": "docker container start boilerplate-with-react-mysql-sql-database && npm run db:info || docker run -d --name boilerplate-with-react-mysql-sql-database -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=changethis -e MYSQL_PASSWORD=changethis -e MYSQL_DATABASE=changethis -p \"3306:3306\" mariadb:10.5.3 && npm run db:info",
+    "db:stop": "docker container stop boilerplate-with-react-mysql-sql-database",
+    "db:info": "docker container ls --filter name=boilerplate-with-react-mysql-sql-database",
+    "copy": "mkdirp front-end/ && cp -r client/build/* front-end/"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "author": "Andrew Senner",
+  "license": "ISC",
+  "dependencies": {
+    "config": "^3.3.1",
+    "consolidate": "^0.15.1",
+    "express": "^4.17.1",
+    "hash.js": "^1.1.7",
+    "mariadb": "^2.4.0",
+    "require-dir": "^1.2.0",
+    "sequelize": "^5.21.11",
+    "swig-templates": "^2.0.3"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "db-migrate": "^0.11.11",
+    "db-migrate-mysql": "^2.1.1",
+    "mkdirp": "^1.0.4"
   }
 }
