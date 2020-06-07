@@ -1,5 +1,8 @@
 #### Note: This is a docker oriented boilerplate. [docker](https://www.docker.com/) and [docker-compose](https://docs.docker.com/compose/) is required to utilize some package scripts. 
 
+#### High-level architecture diagram
+![architecture](./diagram.png)
+
 ### To get started:
 - Clone this repository
 - Run `npm run init`
