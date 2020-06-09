@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const config = require('config');
 const {initializeDatabaseConnection} = require('./database/setup');
-const {initializeControllers} = require('./rest/intialize-controllers');
+const {initializeControllers} = require('./server/intialize-controllers');
 const cons = require('consolidate');
 
 const port = (config.has('server.port') && config.get('server.port')) || process.env.PORT || 80;
