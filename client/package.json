@@ -14,7 +14,7 @@
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
-    "node-sass": "^4.14.1"
+    "node-sass": "^7.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
